@@ -7,7 +7,7 @@
 $ npm install
 ```
 
-Запуск /localhost:3000:
+Запуск /localhost:3000
 ```sh
-$ npm start
+$ npm start ( или выбрать server.js в webstorm(edit-configure+node.js + поле -> javascript-file)
 
