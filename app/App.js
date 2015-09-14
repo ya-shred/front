@@ -5,5 +5,6 @@ import Main from './components/Main';
 
 React.render(
     <Main/>,
+
     document.getElementById('app')
 );
