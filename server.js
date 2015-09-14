@@ -8,7 +8,7 @@ new WebpackDevServer(webpack(config), {
   filename: config.output.filename,
   historyApiFallback: true,
   stats: {
-      colors: true
+    colors: true
   }
 
 }).listen(3000, 'localhost', function (err) {
