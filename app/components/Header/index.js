@@ -15,6 +15,7 @@ class Header extends Component {
 		this.setState({ value: e.target.value })
 	}
 
+
 	render() {
 		var count = this.state.count;
 		var val =  this.state.value;
