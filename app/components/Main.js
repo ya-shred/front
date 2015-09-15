@@ -4,7 +4,7 @@ import Header from './Header/index';
 class Main extends Component {
 	render() {
 		return <div>
-			<Header/>
+			<Header initCount={ 120 }/>
 		</div>
 	}
 }

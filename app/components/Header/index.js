@@ -2,9 +2,9 @@ import React, { PropTypes, Component } from 'react';
 import './index.styl';
 
 class Header extends Component {
-	constructor() {
-		super();
-		this.state = { count: 0, value: "" };
+	constructor(props) {
+		super(props);
+		this.state = { count: props.initCount, value: "" };
 		this._click = this._click.bind(this);
 		this.value = this.value.bind(this);
 	}
@@ -27,7 +27,6 @@ class Header extends Component {
 	}
 
 }
-
 
 export default Header;
 
