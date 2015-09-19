@@ -4,8 +4,9 @@ import MessageItem from '../message-item';
 class MessagesList extends React.Component {
     render() {
         const messages = this.props.messages.map(function(message){
+            let userStateClass;
             if (message.online) {
-                userStateClass = "message__user-state message__user-state_online"
+               userStateClass = "message__user-state message__user-state_online"
             } else {
                 userStateClass = "message__user-state"
             }
