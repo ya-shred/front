@@ -1,4 +1,4 @@
-import { ADD_MESSAGE, SEND_MESSAGE, SEND_MESSAGE, ADD_USER, REMOVE_USER }  from '../constants/ActionTypes.js';
+import { ADD_ITEM, REMOVE_ITEM, DECREASE_ITEM, INCREASE_ITEM }  from '../constants/ActionTypes.js';
 import  AppDispatcher from '../dispatchers/app-dispatcher';
 import  assign  from 'react/lib/Object.assign';
 import { EventEmitter } from 'events';
@@ -10,6 +10,57 @@ const messages = [];
 const users = [];
 
 
+}
+
+const cartItems = [];
+
+
+function removeItem(index) {
+	cartItems[index].inCart = false;
+	cartItems.splice(index, 1);
+}
+
+function increaseItem(index) {
+	cartItems[index].qty++;
+}
+
+function decreaseItem(index) {
+	if(cartItems[index].qty > 1) {
+		cartItems[index].qty--;
+	}
+	else {
+		removeItem(index);
+	}
+}
+
+
+function addItem(item){
+	if(!item.inCart) {
+		item['qty'] = 1;
+		item['inCart'] = true;
+		cartItems.push(item);
+	}
+	else {
+		cartItems.forEach(function( cartItem, i ){
+			if( cartItem.id === item.id ){
+				increaseItem(i);
+			}
+		});
+	}
+}
+
+
+function cartTotal() {
+
+	var qty = 0, total = 0;
+	cartItems.forEach(function (cartItem) {
+		qty += cartItem.qty;
+		total += cartItem.qty + cartItem.cost;
+	});
+	return {
+		'qty': qty, 'total': total
+	}
+}
 
 const AppStore = assign(EventEmitter.prototype, {
 
