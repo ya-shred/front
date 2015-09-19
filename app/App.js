@@ -1,10 +1,9 @@
-import 'babel-core/polyfill';
 import React from 'react';
-import Main from './components/Main';
+import 'babel-core/polyfill.js';
+import Components from './components/components.js';
 
 
 React.render(
-    <Main/>,
-
+    <Components/>,
     document.getElementById('app')
 );
