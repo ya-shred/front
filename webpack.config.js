@@ -2,7 +2,7 @@ var webpack = require('webpack');
 var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+//var HtmlWebpackPlugin = require('html-webpack-plugin');
 var devFlagPlugin = new webpack.DefinePlugin({
     __DEV__: JSON.stringify(JSON.parse(process.env.DEBUG || 'false'))
 });
@@ -35,12 +35,7 @@ module.exports = {
         }),
         devFlagPlugin,
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin(),
-        new HtmlWebpackPlugin({
-            filename: 'index.html',
-            template: 'public/index.template.html',
-            inject: true
-        })
+        new webpack.NoErrorsPlugin()
     ],
     module: {
         loaders: [
@@ -49,7 +44,7 @@ module.exports = {
                 //loaders: ['react-hot', 'babel'],
                 loaders : [
                     'react-hot',
-                    'babel?optional[]=runtime&stage=0',
+                    'babel?optional[]=runtime&stage=0'
                 ],
                 exclude: /node_modules/,
                 include: path.join(__dirname, 'app')

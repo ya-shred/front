@@ -1,38 +1,35 @@
 import  AppDispatcher from '../dispatchers/app-dispatcher';
-import { ADD_ITEM, REMOVE_ITEM, DECREASE_ITEM, INCREASE_ITEM }  from '../constants/ActionTypes.js';
+import { ADD_MESSAGE, SEND_MESSAGE, ADD_USER, REMOVE_USER }  from '../constants/ActionTypes.js';
 
 const AppActions = {
 
 
-	addItem: function (item) {
+	sendMessage: function (mess) {
 		AppDispatcher.handleViewAction({
-			actionType: ADD_ITEM,
+			actionType: SEND_MESSAGE,
+			mess: mess
+		});
+	},
+
+	addMessage: function (item) {
+		AppDispatcher.handleViewAction({
+			actionType: ADD_MESSAGE,
 			item: item
 		});
 	},
 
-	removeItem: function (index) {
-
+	addUser: function (item) {
 		AppDispatcher.handleViewAction({
-			actionType: REMOVE_ITEM,
-			index: index
+			actionType: ADD_USER,
+			item: item
+
 		});
 	},
-
-	increaseItem: function (index) {
-
+	removeUser: function (id) {
 		AppDispatcher.handleViewAction({
-			actionType: INCREASE_ITEM,
-			index: index
-		})
-	},
-
-	decreaseItem: function (index) {
-
-		AppDispatcher.handleViewAction({
-			actionType: DECREASE_ITEM,
-			index: index
-		})
+			actionType: REMOVE_USER,
+			id: id
+		});
 	}
 };
 

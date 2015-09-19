@@ -1,17 +1,15 @@
 import React, { Component, PropTypes } from 'react';
-import AppActions from '../actions/actions.js';
-import Catalog from './catalog.js';
-import Cart from './cart.js';
+import AppActions from "../actions/actions.js";
 
 
 class Components extends Component {
 
+	handler = () => {
+		AppActions.addMessage('akd;lakd;las');
+	};
 	render() {
 		return <div>
-			<h1> Lets Shop </h1>
-			<Catalog/>
-			<h1> Lets Cart</h1>
-			<Cart/>
+			<h1 onClick={this.handler}> Lets Shop</h1>
 		</div>
 	}
 
