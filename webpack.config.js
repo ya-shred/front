@@ -34,7 +34,7 @@ module.exports = {
             allChunks: true
         }),
         devFlagPlugin,
-        new webpack.HotModuleReplacementPlugin(),
+        //new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),
         new HtmlWebpackPlugin({
             filename: 'index.html',
@@ -46,10 +46,10 @@ module.exports = {
         loaders: [
             {
                 test: /\.js?$/,
-                //loaders: ['react-hot', 'babel'],
+                // loaders: ['react-hot', 'babel'],
                 loaders : [
-                    'react-hot',
-                    'babel?optional[]=runtime&stage=0',
+                    //'react-hot',
+                    'babel?stage=2'
                 ],
                 exclude: /node_modules/,
                 include: path.join(__dirname, 'app')
