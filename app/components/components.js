@@ -1,5 +1,10 @@
 import React from 'react';
 import MessagesList from './message-list';
+import MessageBox from './message-box';
+import '../app-styles/app.styl';
+import '../app-styles/app.styl';
+
+import UserList from './user-list';
 
 class Components extends React.Component {
 	render() {
@@ -35,11 +40,35 @@ class Components extends React.Component {
 				messageTime: "18:40"
 			}
 		];
+		const users = [
+			{
+				id: 2,
+				online: true,
+				avatarUrl: "https://avatars2.githubusercontent.com/u/10629760?v=3&s=460",
+				userUrl: "https://github.com/Urkass",
+				userName: "Urkass",
+				userDisplayName: "Petr Kuznetsov"
+			},
+			{
+				id: 2,
+				online: false,
+				avatarUrl: "http://i.imgur.com/DxS92cv.jpg",
+				userUrl: "https://github.com/efimweb",
+				userName: "efimweb",
+				userDisplayName: "Ефим Пасианиди"
+			}
+		];
 
 		return (
-			<div>
+			<div className="chat-box">
 				<h1>Hello world!</h1>
-				<MessagesList messages={messages} />
+				<div className="thred-section">
+					<UserList users={users} />
+				</div>
+				<div className="message-section">
+					<MessagesList messages={messages} />
+					<MessageBox />
+				</div>
 			</div>
 		);
 	}

@@ -1,7 +1,7 @@
 import React from 'react';
 import MessageItem from '../message-item';
-
-class MessagesList extends React.Component {
+import './index.styl';
+export default class MessagesList extends React.Component {
     render() {
         const messages = this.props.messages.map(function(message){
             let userStateClass;
@@ -31,5 +31,3 @@ class MessagesList extends React.Component {
         );
     }
 }
-
-export default MessagesList;

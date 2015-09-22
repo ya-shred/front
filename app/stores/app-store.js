@@ -1,4 +1,4 @@
-import { ADD_ITEM, REMOVE_ITEM, DECREASE_ITEM, INCREASE_ITEM }  from '../constants/ActionTypes.js';
+import { SEND_MESSAGE, ADD_MESSAGE, ADD_USER, REMOVE_USER }  from '../constants/ActionTypes.js';
 import  AppDispatcher from '../dispatchers/app-dispatcher';
 import  assign  from 'react/lib/Object.assign';
 import { EventEmitter } from 'events';
@@ -103,8 +103,7 @@ const AppStore = assign(EventEmitter.prototype, {
 			break;
 		}
 
-		AppStore.emitChange();
-
+43
 		return true;
 	})
 
