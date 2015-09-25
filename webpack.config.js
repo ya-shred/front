@@ -68,7 +68,7 @@ var config = {
 };
 
 if (process.env.NODE_ENV === 'production') {
-
+    config.entry = ['./app/App'];
     config.output.path = path.join(__dirname, 'build');
     config.plugins.push(new webpack.optimize.UglifyJsPlugin({
         compress: {
