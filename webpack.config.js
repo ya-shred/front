@@ -1,20 +1,9 @@
 var webpack = require('webpack');
 var path = require('path');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var TextPlugin = require('extract-text-webpack-plugin');
 
-//var HtmlWebpackPlugin = require('html-webpack-plugin');
-var devFlagPlugin = new webpack.DefinePlugin({
-    __DEV__: JSON.stringify(JSON.parse(process.env.DEBUG || 'false'))
-});
-var autoprefix = '{browsers:["Android 2.3", "Android >= 4", "Chrome >= 20", "Firefox >= 24", "Explorer >= 8", "iOS >= 6", "Opera >= 12", "Safari >= 6"]}';
-var cssLoaders = ['css-loader', 'autoprefixer-loader?' + autoprefix];
-var stylusLoaders = cssLoaders.slice(0);
-
-
-
-stylusLoaders.push('stylus-loader?outputStyle=expanded&includePaths[]=');
-
-module.exports = {
+var config = {
 
     entry: [
         './app/App',
@@ -26,22 +15,31 @@ module.exports = {
         path: path.join(__dirname, 'public'),
         filename: 'bundle.js'
     },
+
     resolve: {
         extensions: ['', '.js', '.jsx']
     },
     plugins: [
-        new ExtractTextPlugin("[name].css",{
-            allChunks: true
+        new TextPlugin("index.css"),
+        new webpack.NoErrorsPlugin(),
+
+        new webpack.DefinePlugin({
+            'process.env': {
+                'NODE_ENV': '"production"'
+            }
         }),
-        devFlagPlugin,
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin()
+        new HtmlWebpackPlugin({
+            template: 'template/index.html',
+            filename: 'index.html',
+            inject: true
+        }),
+
+        new webpack.HotModuleReplacementPlugin()
     ],
     module: {
         loaders: [
             {
                 test: /\.js?$/,
-                //loaders: ['react-hot', 'babel'],
                 loaders : [
                     'react-hot',
                     'babel?optional[]=runtime&stage=0'
@@ -50,13 +48,13 @@ module.exports = {
                 include: path.join(__dirname, 'app')
 
             },{
-                test: /\.styl$/,
-                loader: ExtractTextPlugin.extract('style-loader', stylusLoaders.join('!')),
-                exclude: /node_modules/,
-                include: __dirname
-            },{
                 test: /\.css$/,
-                loader: ExtractTextPlugin.extract('style-loader', cssLoaders.join('!')),
+                loader: TextPlugin.extract('style-loader','css-loader!minimize'),
+                include: __dirname,
+                exclude: /node_modules/
+            },{
+                test: /\.styl$/,
+                loader: TextPlugin.extract('style-loader','css-loader!autoprefixer-loader?browsers=last 5 version!stylus-loader'),
                 include: __dirname,
                 exclude: /node_modules/
             },{
@@ -64,8 +62,19 @@ module.exports = {
                 loader: 'url-loader'
             }
         ]
+
     }
+
 };
 
+if (process.env.NODE_ENV === 'production') {
 
+    config.output.path = path.join(__dirname, 'build');
+    config.plugins.push(new webpack.optimize.UglifyJsPlugin({
+        compress: {
+            warnings: false
+        }
+    }));
+}
 
+module.exports = config;
