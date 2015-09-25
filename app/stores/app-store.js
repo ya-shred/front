@@ -1,65 +1,50 @@
-import { ADD_ITEM, REMOVE_ITEM, DECREASE_ITEM, INCREASE_ITEM }  from '../constants/ActionTypes.js';
+import { SEND_MESSAGE, ADD_MESSAGE, ADD_USER, REMOVE_USER }  from '../constants/ActionTypes.js';
 import  AppDispatcher from '../dispatchers/app-dispatcher';
 import  assign  from 'react/lib/Object.assign';
 import { EventEmitter } from 'events';
 
 const CHANGE_EVENT = 'change';
 
-const messages = [];
+const _messages = [{
+		id: 1,
+		online: true,
+		avatarUrl: "http://i.imgur.com/DxS92cv.jpg",
+		userUrl: "https://github.com/efimweb",
+		userName: "efimweb",
+		userDisplayName: "Ефим Пасианиди",
+		messageText: "Кантал очень гибкий!",
+		messageTime: "18:38"
+	},
+	{
+		id: 2,
+		online: false,
+		avatarUrl: "http://i.imgur.com/bgNnG6z.jpg",
+		userUrl: "https://github.com/ya-shred",
+		userName: "ya-shred",
+		userDisplayName: "Shred Man",
+		messageText: "Правда?",
+		messageTime: "18:39"
+	},
+	{
+		id: 3,
+		online: true,
+		avatarUrl: "http://i.imgur.com/DxS92cv.jpg",
+		userUrl: "https://github.com/efimweb",
+		userName: "efimweb",
+		userDisplayName: "Ефим Пасианиди",
+		messageText: "Да!",
+		messageTime: "18:40"
+	}];
+
+conole.log(_messages);
 
 const users = [];
 
-
-}
-
-const cartItems = [];
-
-
-function removeItem(index) {
-	cartItems[index].inCart = false;
-	cartItems.splice(index, 1);
-}
-
-function increaseItem(index) {
-	cartItems[index].qty++;
-}
-
-function decreaseItem(index) {
-	if(cartItems[index].qty > 1) {
-		cartItems[index].qty--;
-	}
-	else {
-		removeItem(index);
-	}
-}
-
-
-function addItem(item){
-	if(!item.inCart) {
-		item['qty'] = 1;
-		item['inCart'] = true;
-		cartItems.push(item);
-	}
-	else {
-		cartItems.forEach(function( cartItem, i ){
-			if( cartItem.id === item.id ){
-				increaseItem(i);
-			}
-		});
-	}
-}
-
-
-function cartTotal() {
-
-	var qty = 0, total = 0;
-	cartItems.forEach(function (cartItem) {
-		qty += cartItem.qty;
-		total += cartItem.qty + cartItem.cost;
-	});
-	return {
-		'qty': qty, 'total': total
-	}
+function sendMessage(messsage){
+	let date = new Date();
+	let messageTime = date.getHours() + ":" + date.getMinutes();
+	let newMessage = {id: _messages.length + 1, online: true, avatarUrl: "http://i.imgur.com/DxS92cv.jpg", userName: "efimweb", userDisplayName: "Ефим Пасианиди", messageText: messsage, messageTime: messageTime};
+	_messages.push(newMessage);
 }
 
 const AppStore = assign(EventEmitter.prototype, {
@@ -76,15 +61,8 @@ const AppStore = assign(EventEmitter.prototype, {
 		this.removeChangeListener(CHANGE_EVENT,callback);
 	},
 
-	getCart: function () {
-		return cartItems;
-	},
-
-	getCatalog: function () {
-		return catalog;
-	},
-	getCartTotals: function () {
-		return cartTotal();
+	getMessages: function () {
+		return _messages;
 	},
 
 	dispatcherIndex: AppDispatcher.register(function (payload) {
@@ -93,17 +71,11 @@ const AppStore = assign(EventEmitter.prototype, {
 
 		switch( action.actionType ) {
 
-			case ADD_ITEM: addItem(payload.action.item);
-			break;
-			case REMOVE_ITEM: removeItem(payload.action.index);
-			break;
-			case INCREASE_ITEM: increaseItem(payload.action.index);
-			break;
-			case DECREASE_ITEM: decreaseItem(payload.action.index);
+			case SEND_MESSAGE:
+				sendMessage(payload.action.mess);
+				AppStore.emitChange();
 			break;
 		}
-
-		AppStore.emitChange();
 
 		return true;
 	})
