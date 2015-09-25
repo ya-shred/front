@@ -11,10 +11,10 @@ const AppActions = {
 		});
 	},
 
-	addMessage: function (item) {
+	addMessage: function (mess) {
 		AppDispatcher.handleViewAction({
 			actionType: ADD_MESSAGE,
-			item: item
+            mess: mess
 		});
 	},
 
