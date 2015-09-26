@@ -1,6 +1,7 @@
 import React from 'react';
+import Actions from '../../actions/actions';
+import AppStore from '../../stores/app-store';
 import './index.styl';
-import  Actions from '../../actions/actions';
 
 export default class MessagesBox extends React.Component {
     state = {

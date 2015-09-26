@@ -36,7 +36,6 @@ const _messages = [{
 		messageTime: "18:40"
 	}];
 
-conole.log(_messages);
 
 const users = [];
 
@@ -45,6 +44,7 @@ function sendMessage(messsage){
 	let messageTime = date.getHours() + ":" + date.getMinutes();
 	let newMessage = {id: _messages.length + 1, online: true, avatarUrl: "http://i.imgur.com/DxS92cv.jpg", userName: "efimweb", userDisplayName: "Ефим Пасианиди", messageText: messsage, messageTime: messageTime};
 	_messages.push(newMessage);
+	console.log(messsage);
 }
 
 const AppStore = assign(EventEmitter.prototype, {
