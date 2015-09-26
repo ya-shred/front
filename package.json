@@ -1,0 +1,61 @@
+{
+  "name": "shred-chat",
+  "version": "0.0.0",
+  "description": "",
+  "scripts": {
+    "start": "node server.js",
+    "test": "mocha --recursive --compilers js:babel-core/register",
+    "test:watch": "npm test -- --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ya-shred/frontend.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "dependencies": {
+    "autoprefixer-loader": "^3.1.0",
+    "autoprefixer-stylus": "^0.7.1",
+    "babel-core": "^5.8.25",
+    "babel-eslint": "^4.1.3",
+    "babel-loader": "^5.3.2",
+    "babel-runtime": "^5.8.24",
+    "brfs": "^1.4.1",
+    "css-loader": "^0.18.0",
+    "extract-text-webpack-plugin": "^0.8.2",
+    "file-loader": "^0.8.4",
+    "flux": "^2.1.1",
+    "html-webpack-plugin": "^1.6.1",
+    "jade-react-loader": "^0.1.2",
+    "jquery": "^2.1.4",
+    "react": "^0.13.3",
+    "react-hot-loader": "^1.3.0",
+    "react-redux": "^1.0.1",
+    "react-router": "^0.13.3",
+    "redux": "^1.0.1",
+    "stylus-loader": "^1.3.0"
+  },
+  "devDependencies": {
+    "babel": "^5.8.23",
+    "babel-core": "^5.6.18",
+    "babel-loader": "^5.1.4",
+    "brfs": "^1.4.1",
+    "expect": "^1.8.0",
+    "jsdom": "^5.6.1",
+    "jsx-loader": "^0.13.2",
+    "mocha": "^2.2.5",
+    "mocha-jsdom": "^1.0.0",
+    "node-libs-browser": "^0.5.2",
+    "raw-loader": "^0.5.1",
+    "react-hot-loader": "^1.3.0",
+    "style-loader": "^0.12.3",
+    "todomvc-app-css": "^2.0.1",
+    "transform-loader": "^0.2.3",
+    "webpack": "^1.9.11",
+    "webpack-dev-server": "^1.9.0",
+    "webpack-livereload-plugin": "^0.1.3"
+  }
+}
