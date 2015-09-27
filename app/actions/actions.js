@@ -1,5 +1,5 @@
 import  AppDispatcher from '../dispatchers/app-dispatcher';
-import { ADD_MESSAGE, SEND_MESSAGE, ADD_USER, REMOVE_USER }  from '../constants/ActionTypes.js';
+import { ADD_MESSAGE, SEND_MESSAGE, ADD_USER, REMOVE_USER, SEARCH_MESSAGE }  from '../constants/ActionTypes.js';
 
 const AppActions = {
 
@@ -25,12 +25,18 @@ const AppActions = {
 
 		});
 	},
-	removeUser: function (id) {
-		AppDispatcher.handleViewAction({
-			actionType: REMOVE_USER,
-			id: id
-		});
-	}
+    removeUser: function (id) {
+        AppDispatcher.handleViewAction({
+            actionType: REMOVE_USER,
+            id: id
+        });
+    },
+    searchMessage: function (text) {
+        AppDispatcher.handleViewAction({
+            actionType: SEARCH_MESSAGE,
+            text: text
+        });
+    }
 };
 
 module.exports = AppActions;

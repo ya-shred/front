@@ -10,19 +10,22 @@ export default class MessageBox extends React.Component {
 
     render() {
         return (
-            <textarea
-                className="messagebox"
-                name="message"
-                value={this.state.text}
-                onChange={this._onChange}
-                onKeyDown={this._onKeyDown}
-                />
+            <div className="message-box">
+                <textarea
+                    className="message-box__textarea"
+                    name="message"
+                    placeholder="Введите сообщение:"
+                    value={this.state.text}
+                    onChange={this.onChange}
+                    onKeyDown={this.onKeyDown}
+                    />
+            </div>
         );
     }
 
-    _onChange = (event, value) => this.setState({text: event.target.value});
+    onChange = (event, value) => this.setState({text: event.target.value});
 
-    _onKeyDown = (event) => {
+    onKeyDown = (event) => {
         if (event.keyCode === ENTER_KEY_CODE) {
             event.preventDefault();
             var text = this.state.text.trim();

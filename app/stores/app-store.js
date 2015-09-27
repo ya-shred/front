@@ -1,11 +1,11 @@
-import { SEND_MESSAGE, ADD_MESSAGE, ADD_USER, REMOVE_USER }  from '../constants/ActionTypes.js';
+import { SEND_MESSAGE, ADD_MESSAGE, ADD_USER, REMOVE_USER, SEARCH_MESSAGE }  from '../constants/ActionTypes.js';
 import  AppDispatcher from '../dispatchers/app-dispatcher';
 import  assign  from 'react/lib/Object.assign';
 import { EventEmitter } from 'events';
 
 const CHANGE_EVENT = 'change';
 
-const _messages = [{
+let _messages = [{
 	id: 1,
 	online: true,
 	avatarUrl: "http://i.imgur.com/DxS92cv.jpg",
@@ -35,15 +35,33 @@ const _messages = [{
 	messageText: "Да!",
 	messageTime: "18:40"
 }];
+let _currentMessages = _messages;
+let users = [];
 
-const users = [];
-
-function sendMessage(messsage){
+const sendMessage = (messsage) => {
 	let date = new Date();
 	let messageTime = date.getHours() + ":" + date.getMinutes();
 	let newMessage = {id: _messages.length + 1, online: true, avatarUrl: "http://i.imgur.com/DxS92cv.jpg", userName: "efimweb", userDisplayName: "Ефим Пасианиди", messageText: messsage, messageTime: messageTime};
 	_messages.push(newMessage);
-}
+};
+
+
+const search = (text) => {
+	_currentMessages = [];
+	if(text) {
+		_messages.forEach(function(message){
+			var userDisplayName = message.userDisplayName.toLowerCase();
+			var messageText = message.messageText.toLowerCase();
+			var test = text.toLowerCase();
+
+			if(userDisplayName.indexOf(test) > -1 || messageText.indexOf(test) > -1){
+				_currentMessages.push(message);
+			}
+		});
+	} else{
+		_currentMessages = _messages;
+	}
+};
 
 
 
@@ -58,11 +76,11 @@ const AppStore = assign(EventEmitter.prototype, {
 	},
 
 	removeChangeListener: function (callback) {
-		this.removeChangeListener(CHANGE_EVENT,callback);
+		this.removeChangeListener(CHANGE_EVENT, callback);
 	},
 
-	getMessages: function () {
-		return _messages;
+	getCurrentMessages: function () {
+		return _currentMessages;
 	},
 
 	dispatcherIndex: AppDispatcher.register(function (payload) {
@@ -83,6 +101,10 @@ const AppStore = assign(EventEmitter.prototype, {
 			break;
 			case REMOVE_USER:
 				removeUser(payload.action.id);
+			break;
+			case SEARCH_MESSAGE:
+				search(payload.action.text);
+				AppStore.emitChange();
 			break;
 		}
 

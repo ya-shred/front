@@ -1,7 +1,7 @@
 import React from 'react';
 import MessagesList from './message-list';
 import MessageBox from './message-box';
-import '../app-styles/app.styl';
+import MessageSearch from './message-search';
 import '../app-styles/app.styl';
 
 import UserList from './user-list';
@@ -35,6 +35,7 @@ class Components extends React.Component {
 					<UserList users={users} />
 				</div>
 				<div className="message-section">
+					<MessageSearch />
 					<MessagesList />
 					<MessageBox />
 				</div>
