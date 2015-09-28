@@ -1,6 +1,5 @@
 import React from 'react';
 import MessagesList from './message-list';
-import './tmp.png';
 
 class Components extends React.Component {
 	render() {
