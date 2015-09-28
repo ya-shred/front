@@ -4,10 +4,9 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var TextPlugin = require('extract-text-webpack-plugin');
 
 var config = {
-    context: path.join(__dirname, 'app'), // исходная директория
 
     entry: [
-        './app' // Your appʼs entry point
+        './app/app.js' // главный файл
     ],
 
     output: {
