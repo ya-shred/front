@@ -1,13 +1,11 @@
-# Frontend Webpack
+# Frontend
 
-## Getting started
+Подготовка
+- ``npm i`` // Устанавливаем зависимости
 
-Устанавливаем npm пакеты:
-```sh
-$ npm install
-```
+Запуск в дев режиме
+- ``npm run dev`` // Сервер запустится в дев режиме на 3000 порту
 
-Запуск /localhost:3000
-```sh
-$ npm start ( или выбрать server.js в webstorm(edit-configure+node.js + поле -> javascript-file)
-
+Запуск в прод режиме
+- ``npm run prod``
+Проект соберется и запустится сервер на process.env.PORT или 3000 порту
