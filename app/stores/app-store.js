@@ -9,9 +9,6 @@ const messages = [];
 
 const users = [];
 
-
-}
-
 const cartItems = [];
 
 
