@@ -13,14 +13,10 @@ class MessagesList extends React.Component {
 
             return (
                 <MessageItem
-                    key={message.id}
+                    user={message.user}
                     userState={userStateClass}
-                    avatarUrl={message.avatarUrl}
-                    userUrl={message.userUrl}
-                    userName={message.userName}
-                    userDisplayName={message.userDisplayName}
-                    messageText={message.messageText}
-                    messageTime={message.messageTime} />
+                    datetime={message.datetime}
+                    message={message.message} />
             );
         });
 
