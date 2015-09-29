@@ -19,9 +19,8 @@ export default class Textarea extends React.Component {
     }
 
     sendMessage() {
-        console.log('new message');
-        this.setState({value: ''});
         MessageActions.sendMessage({channel: 'general', message: this.state.value});
+        this.setState({value: ''});
     }
 
     changeText(e) {

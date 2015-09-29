@@ -1,5 +1,5 @@
 import React from 'react';
-import MessagesList from './message-list';
+import MessagesList from './messageList';
 import Textarea from './textarea';
 import MessageStore from '../stores/message';
 
