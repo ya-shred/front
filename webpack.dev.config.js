@@ -10,8 +10,6 @@ config.entry.push(
 // https://github.com/webpack/docs/wiki/list-of-plugins#hotmodulereplacementplugin
 config.plugins.push(new webpack.HotModuleReplacementPlugin());
 
-config.output.filename = 'bundle.js';
-
 config.module.loaders.unshift({
     test: /\.js?$/,
     loaders : [

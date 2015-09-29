@@ -9,6 +9,14 @@ var AppDispatcher = assign(new Dispatcher(), {
 			source: "VIEW_ACTION",
 			action: action
 		})
+	},
+
+	handleSocketAction: function (action) {
+		console.log('socket action: ', action);
+		this.dispatch({
+			source: "SOCKET_ACTION",
+			action: action
+		})
 	}
 });
 
