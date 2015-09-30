@@ -1,11 +1,15 @@
-import Actions from '../constants/user.js';
+import Actions from '../constants/usersList';
 import AppDispatcher from '../dispatchers/dispatcher';
 import assign  from 'react/lib/Object.assign';
 import { EventEmitter } from 'events';
 
 const CHANGE_EVENT = 'change';
 
-let userInfo = {};
+const users = [];
+
+var addItem = function (items) {
+    users.push.apply(users, items);
+};
 
 const store = assign({}, EventEmitter.prototype, {
 
@@ -21,8 +25,8 @@ const store = assign({}, EventEmitter.prototype, {
         this.removeChangeListener(CHANGE_EVENT, callback);
     },
 
-    getUserInfo: function () {
-        return userInfo;
+    getAllUsers: function () {
+        return users;
     },
 
     dispatcherIndex: AppDispatcher.register(function (payload) {
@@ -30,8 +34,8 @@ const store = assign({}, EventEmitter.prototype, {
         var action = payload.action;
 
         switch (action.actionType) {
-            case Actions.INFO_FETCHED:
-                userInfo = action.info;
+            case Actions.NEW_USERS:
+                addItem(action.data.users);
                 store.emitChange();
                 break;
         }

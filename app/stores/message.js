@@ -40,7 +40,6 @@ const messages = [
 ];
 
 var addItem = function (message) {
-    console.log('new item', message);
     messages.push(message);
 };
 
@@ -69,10 +68,9 @@ const store = assign({}, EventEmitter.prototype, {
         switch (action.actionType) {
             case Actions.NEW_MESSAGE:
                 addItem(payload.action.message);
+                store.emitChange();
                 break;
         }
-
-        store.emitChange();
 
         return true;
     })
