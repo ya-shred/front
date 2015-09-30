@@ -13,7 +13,6 @@ class Components extends React.Component {
 
 	constructor () {
 		super();
-		console.log(getMessagesState());
 		this.state = getMessagesState();
 		this._onChange = this._onChange.bind(this);
     }
