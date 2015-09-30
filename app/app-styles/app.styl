@@ -1,4 +1,5 @@
-@import './reset/reset.styl'
+@import '/reset/reset.styl'
+@import '/fontello.styl'
 
 body
   	width 100%
@@ -7,3 +8,27 @@ body
   	position relative
   	#app
 	  	width 100%
+
+.chat-box
+  width 800px
+  margin 0 auto
+
+.thred-section
+  width 300px
+  float left
+  padding 0 20px
+  background: #eee
+  box-sizing border-box
+
+.message-section
+  width 490px
+  float: right
+
+.clearfix
+  &:after, &:before
+    content " "
+    display table
+
+.clearfix
+  &:after
+    clear both

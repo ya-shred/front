@@ -2,11 +2,14 @@ import React from 'react';
 import MessagesList from './messageList';
 import Textarea from './textarea';
 import MessageStore from '../stores/message';
+import MessageBox from './messageBox';
+import '../app-styles/app.styl';
+import UserList from './userList';
 
 function getMessagesState() {
-    return {
-        messages: MessageStore.getAllMessages()
-    };
+	return {
+		messages: MessageStore.getAllMessages()
+	};
 }
 
 class Components extends React.Component {
@@ -14,7 +17,6 @@ class Components extends React.Component {
 	constructor () {
 		super();
 		this.state = getMessagesState();
-		this._onChange = this._onChange.bind(this);
     }
 
 	componentDidMount () {
@@ -25,7 +27,7 @@ class Components extends React.Component {
 		MessageStore.removeChangeListener(this._onChange);
     }
 
-	_onChange () {
+	_onChange = () => {
 		this.setState(getMessagesState());
 	}
 
@@ -33,8 +35,14 @@ class Components extends React.Component {
 		return (
 			<div>
 				<h1>Hello world!</h1>
-				<MessagesList messages={this.state.messages} />
-				<Textarea />
+				<div className="thred-section">
+					<UserList />
+				</div>
+				<div className="message-section">
+					<MessagesList messages={this.state.messages} />
+					<Textarea />
+					<MessageBox />
+				</div>
 			</div>
 		);
 	}

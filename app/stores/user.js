@@ -32,10 +32,9 @@ const store = assign({}, EventEmitter.prototype, {
         switch (action.actionType) {
             case Actions.INFO_FETCHED:
                 userInfo = action.info;
+                store.emitChange();
                 break;
         }
-
-        store.emitChange();
 
         return true;
     })
