@@ -9,7 +9,9 @@ import 'shri-socket';
 
 var MESSAGES_HANDLERS = {
     new_message: 'onNewMessage',
-    users_info: 'onNewUsers'
+    users_info: 'onNewUsers',
+    user_connected: 'onUserConnected',
+    user_disconnected: 'onUserDisconnected'
 };
 
 var model = {
@@ -43,7 +45,13 @@ var model = {
             MessageActions.newMessage(message.data);
         },
         onNewUsers: function(message) {
-            UsersListActions.newUsers(message.data);
+            UsersListActions.resetUsers(message.data);
+        },
+        onUserConnected: function(message) {
+            UsersListActions.userConnected(message.data);
+        },
+        onUserDisconnected: function(message) {
+            UsersListActions.userDisconnected(message.data);
         }
     }
 };
