@@ -1,29 +1,34 @@
 import React from 'react';
 import MessageActions from '../../actions/message';
+import './index.styl';
+import TextareaSize from 'react-textarea-autosize';
+const ENTER_KEY_CODE = 13; // код клавиши enter
 
-export default class Textarea extends React.Component {
-    constructor() {
-        super();
-        this.sendMessage = this.sendMessage.bind(this);
-        this.changeText = this.changeText.bind(this);
-        this.state = {value: ''};
-    }
+class Textarea extends React.Component {
+
+    state = {
+        value: ''
+    };
 
     render() {
-        return (
-            <div className="textarea">
-                <textarea onChange={this.changeText} value={this.state.value}></textarea>
-                <button onClick={this.sendMessage}>Отправить сообщение</button>
-            </div>
-        );
+        return <TextareaSize value={this.state.value} minRows={2} style={{maxHeight: 200}} onKeyDown={this._onKeyDown} placeholder={'Введите сообщение'} className={'textarea'}  onChange={this._onChange}/>
     }
 
-    sendMessage() {
-        MessageActions.sendMessage({channel: 'general', message: this.state.value});
-        this.setState({value: ''});
+    _onChange = (event) => {
+        this.setState( { value: event.target.value } );
+    };
+    _onKeyDown = (event) => {
+
+        if (event.keyCode === ENTER_KEY_CODE) {
+            event.preventDefault();
+            var text = this.state.value.trim();
+            if (text) {
+                MessageActions.sendMessage({channel: 'general', message: text });
+            }
+            this.setState({ value: '' });
+        }
     }
 
-    changeText(e) {
-        this.setState({value: e.target.value});
-    }
-};
+}
+
+export default Textarea;

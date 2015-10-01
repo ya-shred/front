@@ -21,12 +21,12 @@ var model = {
         if (session) {
             socketClient.init(session)
                 .then(function (data) {
-                    console.log('Успешно авторизовались');
+                    //console.log('Успешно авторизовались');
                     model.inited = true;
                     UserActions.infoFetched(data);
 
                     socketClient.listen(function(message) {
-                        console.log('new message', message);
+                        //console.log('new message', message);
                         var handler = MESSAGES_HANDLERS[message.type];
                         if (!handler) {
                             console.log('Неизвестное сообщение');

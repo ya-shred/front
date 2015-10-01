@@ -21,36 +21,34 @@ export default class UserList extends React.Component {
 
     componentDidMount () {
         UsersListStore.addChangeListener(this.onChange);
-    }
+    };
 
     componentWillUnmount () {
         UsersListStore.removeChangeListener(this.onChange);
-    }
+    };
 
     onChange = () => {
         this.setState(getUsersState());
-    }
+    };
 
 
     render(){
-        const UserItems = this.state.users.map( function(user){
+        const userItem = this.state.users.map( user => {
             let userStateClass;
+
             if (user.online) {
                 userStateClass = "user-item__state user-item__state_online"
             } else {
                 userStateClass = "user-item__state"
             }
-            return (<UserItem
+            return <UserItem
                 user={user}
-                userState={userStateClass}/>);
+                userState={userStateClass}/>;
         });
-        return (
-            <div className="user-section">
-                <div className="user-list">
-                    {UserItems}
-                </div>
+        return <ul className="user-list">
+            {userItem}
+        </ul>
 
-            </div>
-        )
+
     };
 }

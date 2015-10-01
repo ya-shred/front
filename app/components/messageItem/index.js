@@ -1,23 +1,24 @@
 import React from 'react';
+import './index.styl';
 
-export default class MessageItem extends React.Component {
-    render() {
-        return (
-            <div className="message">
-                <div className="message__header clearfix">
-                    <div className="message__user">
-                        <div className="message__user-avatar">
-                            <img className="message__user-img" width="40" height="40" src={this.props.user.avatarUrl} />
-                            <div className={this.props.userState}></div>
-                        </div>
-                        <h5 className="message__user-display-name">{this.props.user.displayName}</h5>
-                        <a href={this.props.user.profileUrl} title={this.props.user.userName} className="message__user-url-icon icon-github"></a>
-                    </div>
-                    <div className="message__time">{this.props.datetime}</div>
-                </div>
-                <div className="message__text">{this.props.message}</div>
-            </div>
-        );
+class MessageItem extends React.Component {
 
-    }
+	render() {
+
+		return <div className="chat-window__content-item" key={this.props.key }>
+
+			<figure className="chat-window__content-avatar">
+				<img className="chat-window__avatar" src={ this.props.avatar }/>
+			</figure>
+			<div className="chat-window__content-sending">
+				<div className="chat-window__content-name">{this.props.name}<span className="chat-window__content-date">{ this.props.date }</span></div>
+				<div className="chat-window__content-message">{ this.props.message }</div>
+			</div>
+
+
+		</div>
+
+	}
 }
+
+export default MessageItem;
