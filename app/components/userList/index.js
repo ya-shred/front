@@ -34,16 +34,16 @@ export default class UserList extends React.Component {
 
     render(){
         const userItem = this.state.users.map( user => {
-            let userStateClass;
+            var userStatusClass = '';
 
             if (user.online) {
-                userStateClass = "user-item__state user-item__state_online"
+                userStatusClass = "user-list__item online"
             } else {
-                userStateClass = "user-item__state"
+                userStatusClass = "user-list__item"
             }
             return <UserItem
                 user={user}
-                userState={userStateClass}/>;
+                userStatus={userStatusClass}/>;
         });
         return <ul className="user-list">
             {userItem}
