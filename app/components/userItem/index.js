@@ -1,9 +1,8 @@
 import React from 'react';
-import './index.styl';
 
 export default class UserItem extends React.Component {
     render() {
-        return <li className="user-list__item">
+        return <li className={this.props.userStatus}>
                 <div className="user-list__photo">
                     <img className="chat-window__avatar" src={this.props.user.avatarUrl}/>
                 </div>
