@@ -1,5 +1,5 @@
 import AppDispatcher from '../dispatchers/dispatcher';
-import Constants, { NEW_MESSAGE, SEND_MESSAGE } from '../constants/message';
+import { NEW_MESSAGE, SEND_MESSAGE } from '../constants/message';
 import SocketActions from './socket';
 
 export default {

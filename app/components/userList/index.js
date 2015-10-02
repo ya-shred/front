@@ -19,21 +19,21 @@ export default class UserList extends React.Component {
         this.setState({inputLogin: e.target.value});
 
 
-    componentDidMount () {
+    componentDidMount() {
         UsersListStore.addChangeListener(this.onChange);
-    };
+    }
 
-    componentWillUnmount () {
+    componentWillUnmount() {
         UsersListStore.removeChangeListener(this.onChange);
-    };
+    }
 
     onChange = () => {
         this.setState(getUsersState());
     };
 
 
-    render(){
-        const userItem = this.state.users.map( user => {
+    render() {
+        const userItem = this.state.users.map(user => {
             var userStatusClass = '';
             if (user.online) {
                 userStatusClass = "user-list__item online"
@@ -41,6 +41,7 @@ export default class UserList extends React.Component {
                 userStatusClass = "user-list__item"
             }
             return <UserItem
+                key={user.id}
                 user={user}
                 userStatus={userStatusClass}/>;
         });
@@ -49,5 +50,7 @@ export default class UserList extends React.Component {
         </ul>
 
 
-    };
+    }
+
+;
 }

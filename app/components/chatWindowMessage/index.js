@@ -2,61 +2,46 @@ import React from 'react';
 import Textarea from '../textarea';
 import Input from '../input';
 import MessageStore from '../../stores/message.js';
-import MessageItem from "../messageItem";
+import MessageList from "../messageList";
 import './index.styl';
 
+var getMessages = () => {
+    return {
+        messages: MessageStore.getAllMessages()
+    }
+};
+
 class ChatWindowMessage extends React.Component {
+    constructor() {
+        super();
+        this.state = getMessages();
+    }
 
-	state = {
-		msg: MessageStore.getAllMessages()
-	};
+    componentDidMount() {
+        MessageStore.addChangeListener(this.onChange);
+    }
 
-	componentDidMount() {
-		this.scrollToBottom();
-		MessageStore.addChangeListener(this.addMessage);
-	};
+    onChange = () => {
+        this.setState(getMessages());
+    }
 
-	addMessage = () => {
-		this.setState({ msg: MessageStore.getAllMessages() })
-	};
+    componentWillUnmount() {
+        MessageStore.removeChangeListener(this.onChange);
+    }
 
-	componentWillUnmount() {
-		MessageStore.removeChangeListener(this.addMessage);
-	};
+    render() {
+        return <section className="chat-window">
 
-	componentDidUpdate() {
-		this.scrollToBottom();
-	};
+            <div className="chat-window__content">
+                <MessageList messages={this.state.messages}/>
+            </div>
 
-	scrollToBottom = () => {
-		var messageList = this.refs.messageList.getDOMNode();
-		messageList.scrollTop = messageList.scrollHeight;
-	};
+            <div className="chat-window__box-send-message">
+                <Textarea/>
+            </div>
 
-	render() {
-		console.log(this.state.msg);
-		var msg = this.state.msg.map( function(item) {
-			return <MessageItem
-				key={ item.user.key }
-			    avatar={ item.user.avatarUrl }
-			    name={ item.user.displayName}
-				message={item.message}
-				date={item.datetime}
-			/>
-		});
-
-		return <section className="chat-window">
-
-			<div className="chat-window__content" ref="messageList">
-				{msg}
-			</div>
-
-			<div className="chat-window__box-send-message">
-				<Textarea/>
-			</div>
-
-		</section>
-	}
+        </section>
+    }
 
 }
 

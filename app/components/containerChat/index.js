@@ -4,17 +4,14 @@ import AsideRight from '../asideRight';
 import ChatWindowMessage from '../chatWindowMessage';
 import './index.styl';
 
-class ContainerChat extends React.Component {
+export default class ContainerChat extends React.Component {
 
+    render() {
+        return <section className="chat-container">
+            <AsideLeft/>
+            <ChatWindowMessage/>
+            <AsideRight/>
+        </section>
 
-	render() {
-		return <section className="chat-container">
-			<AsideLeft/>
-			<ChatWindowMessage/>
-			<AsideRight/>
-		</section>
-
-	}
-}
-
-export default ContainerChat;
+    }
+};

@@ -1,14 +1,14 @@
 import React from 'react';
 import './index.styl';
 
-class ChatWindowHeader extends React.Component {
+export default class ChatWindowHeader extends React.Component {
 
-	render() {
-		return <div className="header">
-			<h1></h1>
-		</div>
+    render() {
+        return (
+            <header className="header">
+                <h1></h1>
+            </header>
+        )
 
-	}
+    }
 }
-
-export default ChatWindowHeader;

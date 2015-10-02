@@ -1,11 +1,11 @@
 import AppDispatcher from '../dispatchers/dispatcher';
-import Constants from '../constants/user';
+import {INFO_FETCHED} from '../constants/user';
 import SocketActions from './socket';
 
 export default {
     infoFetched: function (data) {
         AppDispatcher.handleSocketAction({
-            actionType: Constants.INFO_FETCHED,
+            actionType: INFO_FETCHED,
             info: data
         });
     }

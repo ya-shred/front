@@ -2,21 +2,13 @@ import Actions from '../constants/message.js';
 import AppDispatcher from '../dispatchers/dispatcher';
 import assign  from 'react/lib/Object.assign';
 import { EventEmitter } from 'events';
-import Dates from '../utils/dateTime.js';
 const CHANGE_EVENT = 'change';
 
 const messages = [];
 
 var addItem = function (message) {
-    var dataMessage = assign(message, {
-        key: Math.random().toFixed() * 10 + 1,
-        datetime: new Dates().getFullDate()
-    });
-    messages.push(dataMessage);
+    messages.push(message);
 };
-
-console.log(messages);
-
 
 const AppStore = assign({}, EventEmitter.prototype, {
 
