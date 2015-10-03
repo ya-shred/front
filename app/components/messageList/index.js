@@ -1,31 +1,36 @@
 import React from 'react';
-import MessageItem from '../messageItem';
+import './index.styl';
+import MessageItem from "../messageItem";
 
-class MessagesList extends React.Component {
+export default class MessageList extends React.Component {
+
+    componentDidMount() {
+        this.scrollToBottom();
+    }
+
+    componentDidUpdate() {
+        this.scrollToBottom();
+    }
+
+    scrollToBottom = () => {
+        var messageList = this.refs.messageList.getDOMNode();
+        messageList.scrollTop = messageList.scrollHeight;
+    }
+
     render() {
-        const messages = this.props.messages.map(function(message){
-            let userStateClass;
-            if (message.online) {
-               userStateClass = "message__user-state message__user-state_online"
-            } else {
-                userStateClass = "message__user-state"
-            }
-
-            return (
-                <MessageItem
-                    user={message.user}
-                    userState={userStateClass}
-                    datetime={message.datetime}
-                    message={message.message} />
-            );
+        var msg = this.props.messages.map(function (item) {
+            return <MessageItem
+                key={item.id}
+                avatar={item.user.avatarUrl}
+                name={item.user.displayName}
+                message={item.message}
+                datetime={item.datetime}
+                />
         });
 
-        return (
-            <div className="message-list" ref="messageList">
-                {messages}
-            </div>
-        );
+        return <div className="message-list" key={this.props.key}  ref="messageList">
+            {msg}
+        </div>
+
     }
 }
-
-export default MessagesList;

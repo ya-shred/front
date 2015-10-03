@@ -19,38 +19,37 @@ export default class UserList extends React.Component {
         this.setState({inputLogin: e.target.value});
 
 
-    componentDidMount () {
+    componentDidMount() {
         UsersListStore.addChangeListener(this.onChange);
     }
 
-    componentWillUnmount () {
+    componentWillUnmount() {
         UsersListStore.removeChangeListener(this.onChange);
     }
 
     onChange = () => {
         this.setState(getUsersState());
+    };
+
+
+    render() {
+        const userItem = this.state.users.map(user => {
+            var userStatusClass = '';
+            if (user.online) {
+                userStatusClass = "user-list__item online"
+            } else {
+                userStatusClass = "user-list__item offline"
+            }
+            return <UserItem
+                key={user.id}
+                user={user}
+                userStatus={userStatusClass}/>;
+        });
+        return <ul className="user-list">
+            {userItem}
+        </ul>
+
+
     }
 
-
-    render(){
-        const UserItems = this.state.users.map( function(user){
-            let userStateClass;
-            if (user.online) {
-                userStateClass = "user-item__state user-item__state_online"
-            } else {
-                userStateClass = "user-item__state"
-            }
-            return (<UserItem
-                user={user}
-                userState={userStateClass}/>);
-        });
-        return (
-            <div className="user-section">
-                <div className="user-list">
-                    {UserItems}
-                </div>
-
-            </div>
-        )
-    };
 }
