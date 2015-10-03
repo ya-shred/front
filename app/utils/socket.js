@@ -8,7 +8,8 @@ var MESSAGES_HANDLERS = {
     new_message: 'onNewMessage',
     users_info: 'onNewUsers',
     user_connected: 'onUserConnected',
-    user_disconnected: 'onUserDisconnected'
+    user_disconnected: 'onUserDisconnected',
+    new_user: 'onNewUser'
 };
 
 var model = {
@@ -49,6 +50,9 @@ var model = {
         },
         onUserDisconnected: function(message) {
             UsersListActions.userDisconnected(message.data);
+        },
+        onNewUser: function(message) {
+            UsersListActions.newUser(message.data);
         }
     },
     sendMessage: function (data) {

@@ -1,11 +1,11 @@
 import AppDispatcher from '../dispatchers/dispatcher';
-import {NEW_USERS, RESET_USERS, USER_CONNECTED, USER_DISCONNECTED} from '../constants/usersList';
+import {NEW_USER, RESET_USERS, USER_CONNECTED, USER_DISCONNECTED} from '../constants/usersList';
 import SocketActions from './socket';
 
 export default {
-    newUsers: function (data) {
+    newUser: function (data) {
         AppDispatcher.handleSocketAction({
-            actionType: NEW_USERS,
+            actionType: NEW_USER,
             data: data
         });
     },
