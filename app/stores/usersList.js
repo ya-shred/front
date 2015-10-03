@@ -60,8 +60,8 @@ const store = assign({}, EventEmitter.prototype, {
                 resetItems(action.data.users);
                 store.emitChange();
                 break;
-            case Actions.NEW_USERS:
-                addItem(action.data.users);
+            case Actions.NEW_USER:
+                addItem([action.data.user]);
                 store.emitChange();
                 break;
             case Actions.USER_CONNECTED:
