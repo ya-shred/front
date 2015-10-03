@@ -34,7 +34,8 @@ class Textarea extends React.Component {
             event.preventDefault();
             var text = this.state.value.trim();
             if (text) {
-                MessageActions.sendMessage({channel: 'general', message: text});
+                MessageActions.sendMessage({channel: 'general', message: text, userId: 123});
+                MessageActions.newMessage({channel: 'general', message: text, userId: 123});
             }
             this.setState({value: ''});
         }

@@ -1,6 +1,7 @@
 import React from 'react';
 import './index.styl';
 import MessageItem from "../messageItem";
+import UsersListStore from '../../stores/usersList';
 
 export default class MessageList extends React.Component {
 
@@ -15,14 +16,18 @@ export default class MessageList extends React.Component {
     scrollToBottom = () => {
         var messageList = this.refs.messageList.getDOMNode();
         messageList.scrollTop = messageList.scrollHeight;
-    }
+    };
 
     render() {
         var msg = this.props.messages.map(function (item) {
+
+            var messageUser = UsersListStore.getUserById(item.userId);
+
+
             return <MessageItem
                 key={item.id}
-                avatar={item.user.avatarUrl}
-                name={item.user.displayName}
+                avatar={messageUser.avatarUrl}
+                name={messageUser.name}
                 message={item.message}
                 datetime={item.datetime}
                 />

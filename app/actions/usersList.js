@@ -1,5 +1,5 @@
 import AppDispatcher from '../dispatchers/dispatcher';
-import {NEW_USERS, RESET_USERS, USER_CONNECTED, USER_DISCONNECTED} from '../constants/usersList';
+import {NEW_USERS, RESET_USERS, USER_CONNECTED, USER_DISCONNECTED, SEARCH_USER} from '../constants/usersList';
 import SocketActions from './socket';
 
 export default {
@@ -26,5 +26,12 @@ export default {
             actionType: USER_DISCONNECTED,
             data: data
         });
-    }
+    },
+    searchUser: function (text) {
+        AppDispatcher.handleSocketAction({
+            actionType: SEARCH_USER,
+            text: text
+        });
+    },
+
 };

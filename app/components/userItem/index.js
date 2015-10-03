@@ -9,7 +9,7 @@ export default class UserItem extends React.Component {
             <div className="user-list__box-content">
                 <div className="user-list__content">
                     <div className="user-list__box-name"><span
-                        className="user-list__name">{this.props.user.displayName}</span>
+                        className="user-list__name">{this.props.user.name}</span>
 
                         <div className="user-list__status"/>
                     </div>

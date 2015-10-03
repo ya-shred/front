@@ -1,14 +1,50 @@
 import Actions from '../constants/message.js';
 import AppDispatcher from '../dispatchers/dispatcher';
+import UsersListStore from './usersList';
 import assign  from 'react/lib/Object.assign';
 import { EventEmitter } from 'events';
 const CHANGE_EVENT = 'change';
 
-const messages = [];
+const messages = [{
+        id: 1,
+        message: "Кантал очень гибкий!",
+        datetime: "1443790800000",
+        userId: 123
+    },
+    {
+        id: 2,
+        message: "Правда?",
+        datetime: "1443792360000",
+        userId: 321
+    },
+    {
+        id: 3,
+        message: "Да!",
+        datetime: "1443795600000",
+        userId: 123
+    }];
 
 var addItem = function (message) {
     messages.push(message);
 };
+
+var searchMessage = function (text) {
+    if (text){
+        return messages.filter(function(message){
+
+            var messageUser = UsersListStore.getUserById(message.userId);
+            var userDisplayName = messageUser.name.toLowerCase();
+            var messageText = message.message.toLowerCase();
+            var test = text.toLowerCase();
+
+            return userDisplayName.indexOf(test) > -1 || messageText.indexOf(test) > -1;
+        });
+    } else{
+        return messages
+    }
+};
+
+var searchMessageText = '';
 
 const AppStore = assign({}, EventEmitter.prototype, {
 
@@ -25,7 +61,8 @@ const AppStore = assign({}, EventEmitter.prototype, {
     },
 
     getAllMessages: function () {
-        return messages;
+        return searchMessage(searchMessageText);
+
     }
 
 });
@@ -37,7 +74,10 @@ AppDispatcher.register(function (payload) {
     switch (action.actionType) {
         case Actions.NEW_MESSAGE:
             addItem(payload.action.message);
-        break;
+            break;
+        case Actions.SEARCH_MESSAGE:
+            searchMessageText = payload.action.text;
+            break;
     }
 
     AppStore.emitChange();
