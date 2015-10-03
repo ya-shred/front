@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.styl';
 
-export default class ChatWindowHeader extends React.Component {
+export default class Header extends React.Component {
 
     render() {
         return (

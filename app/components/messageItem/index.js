@@ -8,7 +8,7 @@ export default class MessageItem extends React.Component {
         return <div className="chat-window__content-item" key={this.props.key }>
 
             <figure className="chat-window__content-avatar">
-                <img className="chat-window__avatar" src={ this.props.avatar }/>
+                <img className="chat-window__avatar" src={this.props.avatar}/>
             </figure>
             <div className="chat-window__content-sending">
                 <div className="chat-window__content-name">
@@ -17,7 +17,7 @@ export default class MessageItem extends React.Component {
                         {moment(this.props.datetime).format('DD.MM.YYYY в HH:mm')}
                     </span>
                 </div>
-                <div className="chat-window__content-message">{ this.props.message }</div>
+                <div className="chat-window__content-message">{this.props.message}</div>
             </div>
 
         </div>

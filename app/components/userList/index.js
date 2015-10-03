@@ -38,7 +38,7 @@ export default class UserList extends React.Component {
             if (user.online) {
                 userStatusClass = "user-list__item online"
             } else {
-                userStatusClass = "user-list__item"
+                userStatusClass = "user-list__item offline"
             }
             return <UserItem
                 key={user.id}
@@ -52,5 +52,4 @@ export default class UserList extends React.Component {
 
     }
 
-;
 }
