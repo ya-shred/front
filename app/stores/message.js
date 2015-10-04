@@ -24,18 +24,17 @@ const messages = [{
         userId: 123
     }];
 
-var addItem = function (message) {
+let addItem = (message) => {
     messages.push(message);
 };
 
-var searchMessage = function (text) {
+let searchMessage = (text) => {
     if (text){
-        return messages.filter(function(message){
-
-            var messageUser = UsersListStore.getUserById(message.userId);
-            var userDisplayName = messageUser.name.toLowerCase();
-            var messageText = message.message.toLowerCase();
-            var test = text.toLowerCase();
+        return messages.filter((message) => {
+            let messageUser = UsersListStore.getUserById(message.userId);
+            let userDisplayName = messageUser.name.toLowerCase();
+            let messageText = message.message.toLowerCase();
+            let test = text.toLowerCase();
 
             return userDisplayName.indexOf(test) > -1 || messageText.indexOf(test) > -1;
         });
@@ -44,32 +43,32 @@ var searchMessage = function (text) {
     }
 };
 
-var searchMessageText = '';
+let searchMessageText;
 
-const AppStore = assign({}, EventEmitter.prototype, {
+export const AppStore = assign({}, EventEmitter.prototype, {
 
-    emitChange: function () {
+    emitChange() {
         this.emit(CHANGE_EVENT);
     },
 
-    addChangeListener: function (callback) {
+    addChangeListener(callback) {
         this.on(CHANGE_EVENT, callback)
     },
 
-    removeChangeListener: function (callback) {
+    removeChangeListener(callback) {
         this.removeChangeListener(CHANGE_EVENT, callback);
     },
 
-    getAllMessages: function () {
+    getAllMessages() {
         return searchMessage(searchMessageText);
 
     }
 
 });
 
-AppDispatcher.register(function (payload) {
+AppDispatcher.register((payload) => {
 
-    var action = payload.action;
+    let action = payload.action;
 
     switch (action.actionType) {
         case Actions.NEW_MESSAGE:

@@ -42,33 +42,35 @@ const usersHash = {
         }
     };
 
-var addItems = function (items) {
-    items.forEach(function(item) {
+let addItems = (items) => {
+    items.forEach((item) => {
         usersHash[item.id] = item;
     });
     users.push.apply(users, items);
 };
 
-var resetItems = function (items) {
+
+
+let resetItems = (items) => {
     users.length = 0;
     addItems(items);
 };
 
-var setOnline = function (userId) {
+let setOnline = (userId) => {
     users[userId].online = true;
 };
 
-var setOffline = function (userId) {
+let setOffline = (userId) => {
     users[userId].online = false;
 };
 
-var searchUser = function (text) {
+let searchUser = (text) => {
     if (text){
 
-        var currentUsers = users.filter(function(user){
+        let currentUsers = users.filter((user) => {
 
-            var userDisplayName = user.name.toLowerCase();
-            var test = text.toLowerCase();
+            let userDisplayName = user.name.toLowerCase();
+            let test = text.toLowerCase();
 
             return userDisplayName.indexOf(test) > -1;
         });
@@ -80,34 +82,34 @@ var searchUser = function (text) {
 
 };
 
-let searchUserText = '';
+let searchUserText;
 
 const store = assign({}, EventEmitter.prototype, {
 
-    emitChange: function () {
+    emitChange() {
         this.emit(CHANGE_EVENT);
     },
 
-    addChangeListener: function (callback) {
+    addChangeListener(callback) {
         this.on(CHANGE_EVENT, callback)
     },
 
-    removeChangeListener: function (callback) {
+    removeChangeListener(callback) {
         this.removeChangeListener(CHANGE_EVENT, callback);
     },
 
-    getAllUsers: function () {
+    getAllUsers() {
         return searchUser(searchUserText);
     },
 
-    getUserById: function (id) {
+    getUserById(id) {
         return usersHash[id];
     },
 
 
-    dispatcherIndex: AppDispatcher.register(function (payload) {
+    dispatcherIndex: AppDispatcher.register((payload) => {
 
-        var action = payload.action;
+        let action = payload.action;
 
         switch (action.actionType) {
             case Actions.RESET_USERS:
@@ -115,7 +117,7 @@ const store = assign({}, EventEmitter.prototype, {
                 store.emitChange();
                 break;
             case Actions.NEW_USERS:
-                addsItem(action.data.users);
+                addItems(action.data.users);
                 store.emitChange();
                 break;
             case Actions.USER_CONNECTED:

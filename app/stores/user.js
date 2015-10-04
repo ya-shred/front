@@ -9,25 +9,25 @@ let userInfo = {};
 
 const store = assign({}, EventEmitter.prototype, {
 
-    emitChange: function () {
+    emitChange() {
         this.emit(CHANGE_EVENT);
     },
 
-    addChangeListener: function (callback) {
+    addChangeListener(callback) {
         this.on(CHANGE_EVENT, callback)
     },
 
-    removeChangeListener: function (callback) {
+    removeChangeListener(callback) {
         this.removeChangeListener(CHANGE_EVENT, callback);
     },
 
-    getUserInfo: function () {
+    getUserInfo() {
         return userInfo;
     },
 
-    dispatcherIndex: AppDispatcher.register(function (payload) {
+    dispatcherIndex: AppDispatcher.register((payload) => {
 
-        var action = payload.action;
+        let action = payload.action;
 
         switch (action.actionType) {
             case Actions.INFO_FETCHED:

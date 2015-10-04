@@ -15,6 +15,7 @@ var getMessages = () => {
 };
 
 export default class ChatWindowMessage extends React.Component {
+
     constructor() {
         super();
         this.state = getMessages();
@@ -24,26 +25,26 @@ export default class ChatWindowMessage extends React.Component {
         MessageStore.addChangeListener(this.onChange);
     }
 
-    onChange = (text) => {
-        this.setState(getMessages());
-    };
-
     componentWillUnmount() {
         MessageStore.removeChangeListener(this.onChange);
     }
 
+    onChange = (text) => {
+        this.setState(getMessages());
+    };
+
     render() {
-        return <section className="chat-window">
-            <SearchMessage/>
-            <div className="chat-window__content">
-                <MessageList messages={this.state.messages} users={this.state.users} />
-            </div>
-
-            <div className="chat-window__box-send-message">
-                <Textarea/>
-            </div>
-
-        </section>
+        return (
+            <section className="chat-window">
+                <SearchMessage/>
+                <div className="chat-window__content">
+                    <MessageList messages={this.state.messages} />
+                </div>
+                <div className="chat-window__box-send-message">
+                    <Textarea/>
+                </div>
+            </section>
+        );
     }
 
 }

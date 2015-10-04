@@ -3,35 +3,34 @@ import {NEW_USERS, RESET_USERS, USER_CONNECTED, USER_DISCONNECTED, SEARCH_USER} 
 import SocketActions from './socket';
 
 export default {
-    newUsers: function (data) {
+    newUsers(data) {
         AppDispatcher.handleSocketAction({
             actionType: NEW_USERS,
             data: data
         });
     },
-    resetUsers: function (data) {
+    resetUsers(data) {
         AppDispatcher.handleSocketAction({
             actionType: RESET_USERS,
             data: data
         });
     },
-    userConnected: function (data) {
+    userConnected(data) {
         AppDispatcher.handleSocketAction({
             actionType: USER_CONNECTED,
             data: data
         });
     },
-    userDisconnected: function (data) {
+    userDisconnected(data) {
         AppDispatcher.handleSocketAction({
             actionType: USER_DISCONNECTED,
             data: data
         });
     },
-    searchUser: function (text) {
+    searchUser(text) {
         AppDispatcher.handleSocketAction({
             actionType: SEARCH_USER,
             text: text
         });
-    },
-
+    }
 };

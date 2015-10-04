@@ -4,7 +4,7 @@ import UsersListStore from '../../stores/usersList';
 import UserList from '../userList';
 import SearchUser from '../searchUser';
 
-var getUsersState = () => {
+var getUsers = () => {
     return {
         users: UsersListStore.getAllUsers()
     };
@@ -14,12 +14,8 @@ export default class AsideLeft extends React.Component {
 
     constructor() {
         super();
-        this.state = getUsersState();
+        this.state = getUsers();
     }
-
-    handleChange = (e) =>
-        this.setState({inputLogin: e.target.value});
-
 
     componentDidMount() {
         UsersListStore.addChangeListener(this.onChange);
@@ -30,14 +26,20 @@ export default class AsideLeft extends React.Component {
     }
 
     onChange = () => {
-        this.setState(getUsersState());
+        this.setState(getUsers());
+    };
+
+    handleChange = (e) => {
+        this.setState({inputLogin: e.target.value});
     };
 
     render() {
-        return <aside className="aside-left">
-                    <SearchUser />
-                    <UserList users={this.state.users} />
-                </aside>
-
+        return (
+            <aside className="aside-left">
+                <SearchUser />
+                <UserList users={this.state.users} />
+            </aside>
+        );
     }
+
 }

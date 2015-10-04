@@ -3,7 +3,7 @@ import { NEW_MESSAGE, SEND_MESSAGE, SEARCH_MESSAGE } from '../constants/message'
 import SocketActions from './socket';
 
 export default {
-    sendMessage: function (data) {
+    sendMessage(data) {
         SocketActions.sendMessage(data);
         console.log(data);
         AppDispatcher.handleViewAction({
@@ -12,14 +12,14 @@ export default {
         });
     },
 
-    newMessage: function (data) {
+    newMessage(data) {
         AppDispatcher.handleSocketAction({
             actionType: NEW_MESSAGE,
             message: data
         });
     },
 
-    searchMessage: function (text) {
+    searchMessage(text) {
         AppDispatcher.handleViewAction({
             actionType: SEARCH_MESSAGE,
             text: text

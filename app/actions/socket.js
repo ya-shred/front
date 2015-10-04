@@ -1,7 +1,7 @@
 import SocketAPI from '../utils/socket'
 
 export default {
-    sendMessage: function (data) {
+    sendMessage(data) {
         SocketAPI.sendMessage(data);
     }
 };

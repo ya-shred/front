@@ -7,11 +7,14 @@ import './index.styl';
 export default class ContainerChat extends React.Component {
 
     render() {
-        return <section className="chat-container">
-            <AsideLeft/>
-            <ChatWindowMessage/>
-            <AsideRight/>
-        </section>
+        return (
+            <section className="chat-container">
+                <AsideLeft/>
+                <ChatWindowMessage/>
+                <AsideRight/>
+            </section>
+        );
 
     }
-};
+
+}
